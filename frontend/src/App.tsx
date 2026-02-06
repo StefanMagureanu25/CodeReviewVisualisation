@@ -8,7 +8,10 @@ function App() {
     owner: string;
     project: string;
   }>();
-
+	
+  if (window.location.pathname.includes("leaderboard")) {
+      return null;
+  }
   return (
     <>
       {owner && project && <Visualisation />}

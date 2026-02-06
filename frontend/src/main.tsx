@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 
 import App from "./App.tsx";
 import Projects from "./Projects.tsx";
+import LeaderboardPage from "./LeaderboardPage.tsx";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -14,6 +15,7 @@ import "@fontsource/roboto/700.css";
 
 const router = createBrowserRouter([
   { path: "/:owner/:project", element: <App /> },
+  { path: "/leaderboard/:owner/:project", element: <LeaderboardPage /> },
   { path: "/", element: <Projects /> },
 ]);
 

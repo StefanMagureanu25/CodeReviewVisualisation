@@ -6,7 +6,7 @@ import {
   getWeekFrame,
   getOneMonthFrame,
 } from "./dateSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DateTime } from "luxon";
 import { RootState } from "./store";
 import { Paper, ButtonGroup, Button, Typography, Slider } from "@mui/material";
@@ -19,10 +19,18 @@ const SLIDER_SIZE = 30;
 export default function Controller() {
   const dates = useSelector((state: RootState) => state.dates);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { owner, project } = useParams<{
     owner: string;
     project: string;
   }>();
+
+  const handleOpenLeaderboard = () => {
+    if (owner && project) {
+      navigate(`/leaderboard/${owner}/${project}`);
+    }
+  };
 
   const [sliderDates, setSliderDates] = React.useState<number[]>([
     SLIDER_SIZE - 7,
@@ -118,6 +126,16 @@ export default function Controller() {
             alignContent: "flex-end",
           }}
         >
+	<Button
+        onClick={handleOpenLeaderboard}
+        style={{
+          backgroundColor: "#8a2be2",
+          color: "white",
+          cursor: "pointer",
+        }}
+      	>
+        View AI Code Review
+	</Button>
           <Button color="success" onClick={() => dispatch(getOneMonthFrame())}>
             A month
           </Button>
